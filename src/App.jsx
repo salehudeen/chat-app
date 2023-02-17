@@ -1,35 +1,25 @@
-import React from 'react'
-import { useState } from 'react'
-import './App.css'
-import 'firebase/firestore';
-import 'firebase/auth';
+import React from 'react';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
-import {useAuthState} from 'react-firebase-hooks/auth'
-import {useCollectionData} from 'react-firebase-hooks/auth'
+import { logo } from './assets';
+import { Home, CreatePost } from './page';
 
-firebaseError.initalizeApp({
-  apiKey: "AIzaSyCE7_R1a9ARnxp_hPBQJ2Xg9XC4JUUlKHU",
-  authDomain: "hhyy-7f066.firebaseapp.com",
-  databaseURL: "https://hhyy-7f066-default-rtdb.firebaseio.com",
-  projectId: "hhyy-7f066",
-  storageBucket: "hhyy-7f066.appspot.com",
-  messagingSenderId: "3932462642",
-  appId: "1:3932462642:web:b9e3483421311ebb6aa62b",
-  measurementId: "G-3CSR1XX8F9"
-})
-const auth = firebase.auth()
-const firestore = firebase.firestore();
+const App = () => (
+  <BrowserRouter>
+    <header className="w-full flex justify-between items-center bg-white sm:px-8 px-4 py-4 border-b border-b-[#e6ebf4]">
+      <Link to="/">
+        <img src={logo} alt="logo" className="w-28 object-contain" />
+      </Link>
 
+      <Link to="/create-post" className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md">Create</Link>
+    </header>
+    <main className="sm:p-8 px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create-post" element={<CreatePost />} />
+      </Routes>
+    </main>
+  </BrowserRouter>
+);
 
-function App() {
-
-  return (
-    <div className="App">
-       <header className='App-header'>
-
-       </header>
-    </div>
-  )
-}
-
-export default App
+export default App;
